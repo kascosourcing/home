@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#001440" />
+  <title>KASCO Sourcing — Smarter Sourcing. Stronger Supply Chains.</title>
+  <meta name="description" content="KASCO Sourcing helps businesses build transparent, resilient and commercially effective sourcing operations." />
+  <style>
+    :root{
+      --ocean:#13309E;
+      --sand:#F07936;
+      --ink:#001440;
+      --black:#000000;
+      --white:#FFFFFF;
+      --cyan:#00FDFD;
+      --ice:#AFFFFD;
+      --sky:#35AEE3;
+      --red:#F03624;
+      --green:#00FA7D;
+      --yellow:#FBE28B;
+      --text:#101A34;
+      --muted:#5D6780;
+      --line:rgba(19,48,158,.12);
+      --soft:#F5F7FC;
+      --radius:24px;
+      --container:min(1440px, calc(100vw - 80px));
+      --shadow:0 18px 60px rgba(0,20,64,.10);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--text);background:#fff;line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    button,input,textarea{font:inherit}
+    .container{width:var(--container);margin-inline:auto}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--ocean)}
+    .eyebrow::before{content:"";width:24px;height:2px;background:var(--sand);border-radius:10px}
+    .section-title{font-size:clamp(34px,4vw,64px);line-height:.98;letter-spacing:-.045em;margin:18px 0 20px;max-width:900px}
+    .section-copy{font-size:clamp(16px,1.35vw,20px);color:var(--muted);max-width:760px;margin:0}
+
+    header{position:fixed;z-index:50;top:0;left:0;right:0;padding:18px 0;transition:.3s ease}
+    header.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(0,20,64,.08)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.04em;color:#fff}
+    header.scrolled .brand{color:var(--ink)}
+    .brand-mark{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--sand);color:#fff;font-weight:900;letter-spacing:-.08em}
+    .brand small{display:block;font-size:10px;letter-spacing:.17em;font-weight:700;opacity:.72;margin-top:-2px}
+    .nav-links{display:flex;align-items:center;gap:30px;color:rgba(255,255,255,.9);font-size:14px;font-weight:650}
+    header.scrolled .nav-links{color:var(--ink)}
+    .nav-links a:hover{color:var(--sand)}
+    .nav-cta{padding:12px 18px;border-radius:999px;background:var(--sand);color:#fff!important;font-weight:800}
+    .menu-btn{display:none;border:0;background:transparent;padding:8px;color:#fff}
+    header.scrolled .menu-btn{color:var(--ink)}
+
+    .hero{min-height:860px;background:var(--ink);color:#fff;overflow:hidden;position:relative;padding:160px 0 84px}
+    .hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(0,253,253,.18),rgba(19,48,158,.08) 42%,transparent 68%);filter:blur(2px)}
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;position:relative;z-index:2}
+    .hero-kicker{color:var(--ice)}
+    .hero h1{font-size:clamp(52px,6.7vw,104px);line-height:.91;letter-spacing:-.062em;margin:22px 0 28px;max-width:900px}
+    .hero h1 span{color:var(--sand)}
+    .hero p{font-size:clamp(18px,1.5vw,22px);color:rgba(255,255,255,.72);max-width:650px;margin:0 0 34px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 22px;border-radius:999px;font-weight:800;font-size:14px;transition:.25s ease;border:1px solid transparent}
+    .btn.primary{background:var(--sand);color:#fff}
+    .btn.secondary{border-color:rgba(255,255,255,.23);color:#fff;background:rgba(255,255,255,.04)}
+    .btn:hover{transform:translateY(-2px)}
+    .arrow{font-size:18px;line-height:1}
+
+    .hero-visual{position:relative;min-height:560px;display:flex;align-items:center;justify-content:center}
+    .hero-image{width:100%;aspect-ratio:4/3;border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 90px rgba(0,0,0,.18);background:#fff}
+    .hero-image img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}
+    .hero-foot{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,255,.12);margin-top:74px;position:relative;z-index:2}
+    .hero-proof{padding:24px 22px 4px 0;color:rgba(255,255,255,.58);font-size:13px}
+    .hero-proof strong{display:block;color:#fff;font-size:14px;margin-bottom:6px}
+
+    section{padding:110px 0}
+    .services{background:#fff}
+    .services-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:52px}
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .service{min-height:330px;border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;justify-content:space-between;transition:.28s ease;background:#fff}
+    .service:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+    .service-num{font-size:12px;font-weight:800;color:var(--sand);letter-spacing:.12em}
+    .service h3{font-size:25px;line-height:1.08;letter-spacing:-.035em;margin:20px 0 14px}
+    .service p{color:var(--muted);margin:0;font-size:15px}
+    .service-bottom{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:22px;margin-top:30px;font-size:13px;font-weight:800;color:var(--ocean)}
+    .service-icon{width:44px;height:44px;display:grid;place-items:center;color:var(--ink);background:transparent;margin-bottom:2px}
+    .service-icon svg{width:28px;height:28px;stroke:currentColor;stroke-width:1.55;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .service:hover .service-icon{color:var(--ocean)}
+
+    .impact{background:var(--ocean);color:#fff;position:relative;overflow:hidden}
+    .impact::after{content:"";position:absolute;width:560px;height:560px;right:-160px;bottom:-250px;border-radius:50%;border:90px solid rgba(0,253,253,.08)}
+    .impact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:center;position:relative;z-index:2}
+    .impact .eyebrow{color:var(--ice)}
+    .impact .section-copy{color:rgba(255,255,255,.72)}
+    .impact-stat{border-left:1px solid rgba(255,255,255,.18);padding-left:52px}
+    .impact-stat .big{font-size:clamp(86px,12vw,168px);line-height:.8;letter-spacing:-.075em;font-weight:900;color:var(--sand)}
+    .impact-stat p{font-size:18px;max-width:420px;color:rgba(255,255,255,.75);margin-top:30px}
+
+    .about{background:var(--soft)}
+    .about-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:88px;align-items:start}
+    .about-sticky{position:sticky;top:120px}
+    .about-panel{background:var(--ink);border-radius:30px;color:#fff;padding:38px;min-height:420px;position:relative;overflow:hidden}
+    .about-panel::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:var(--sand);right:-90px;bottom:-100px}
+    .about-panel strong{font-size:clamp(42px,5vw,76px);line-height:.95;display:block;letter-spacing:-.06em;max-width:420px;position:relative;z-index:1}
+    .about-panel p{max-width:400px;color:rgba(255,255,255,.65);position:relative;z-index:1;margin-top:22px}
+    .about-list{display:grid;gap:16px}
+    .about-item{background:#fff;border-radius:22px;padding:28px;border:1px solid rgba(19,48,158,.08)}
+    .about-item .top{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+    .about-item .dot{width:12px;height:12px;border-radius:50%}
+    .about-item:nth-child(1) .dot{background:var(--cyan)}.about-item:nth-child(2) .dot{background:var(--green)}.about-item:nth-child(3) .dot{background:var(--sand)}.about-item:nth-child(4) .dot{background:var(--yellow)}
+    .about-item h3{margin:0;font-size:20px;letter-spacing:-.02em}.about-item p{margin:0;color:var(--muted);font-size:15px}
+
+    .solutions{background:#fff}
+    .solution-shell{display:grid;grid-template-columns:320px 1fr;gap:26px;margin-top:48px}
+    .solution-tabs{display:flex;flex-direction:column;gap:8px}
+    .solution-panels{min-width:0}
+    .tab{border:0;text-align:left;padding:18px 18px;border-radius:16px;background:transparent;color:var(--muted);font-weight:750;cursor:pointer;transition:.2s ease}
+    .tab.active{background:var(--ink);color:#fff}
+    .solution-panel{border-radius:28px;background:var(--soft);padding:42px;min-height:420px;display:none}
+    .solution-panel.active{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+    .solution-panel h3{font-size:clamp(30px,3vw,48px);line-height:1;letter-spacing:-.045em;margin:0 0 18px}
+    .solution-panel p{color:var(--muted);font-size:17px;max-width:620px}
+    .checklist{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;margin-top:26px}
+    .check{position:relative;padding-left:20px;font-size:14px;font-weight:700;color:var(--ink)}
+    .check::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--ocean);box-shadow:0 0 0 4px rgba(19,48,158,.08)}
+    .solution-art{aspect-ratio:4/3;min-height:0;border-radius:22px;background:#fff;border:1px solid var(--line);overflow:hidden}
+    .solution-art img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}
+
+    .contact{background:var(--sand);padding:96px 0;color:var(--ink)}
+    .contact-shell{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:start}
+    .contact .section-title{max-width:620px}
+    .contact p{color:rgba(0,20,64,.7)}
+    form{background:#fff;border-radius:28px;padding:32px;box-shadow:var(--shadow)}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}
+    label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--ocean)}
+    input,textarea{width:100%;border:1px solid rgba(19,48,158,.16);border-radius:14px;padding:14px 15px;color:var(--ink);outline:none;background:#fff}
+    input:focus,textarea:focus{border-color:var(--ocean);box-shadow:0 0 0 3px rgba(19,48,158,.08)}
+    textarea{min-height:130px;resize:vertical}
+    .submit{width:100%;border:0;border-radius:14px;padding:15px;background:var(--ink);color:#fff;font-weight:850;cursor:pointer;margin-top:14px}
+
+    footer{background:#000;color:#fff;padding:54px 0 24px}
+    .footer-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:48px;padding-bottom:42px}
+    .footer-brand{font-size:26px;font-weight:900;letter-spacing:-.04em}.footer-brand span{color:var(--sand)}
+    footer p,footer a{color:rgba(255,255,255,.58);font-size:13px}
+    footer h4{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:#fff;margin:0 0 16px}
+    .footer-links{display:grid;gap:10px}
+    .copyright{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;display:flex;justify-content:space-between;gap:20px;color:rgba(255,255,255,.42);font-size:12px}
+
+    .cookie-link{border:0;background:none;padding:0;color:rgba(255,255,255,.58);font:inherit;cursor:pointer}
+    .cookie-link:hover{color:#fff}
+    .cookie-banner{position:fixed;left:24px;right:24px;bottom:24px;z-index:1000;display:none}
+    .cookie-banner.show{display:block}
+    .cookie-shell{max-width:980px;margin:0 auto;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border:1px solid rgba(0,20,64,.10);border-radius:22px;box-shadow:0 24px 80px rgba(0,20,64,.22);padding:22px 24px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+    .cookie-copy strong{display:block;color:var(--ink);font-size:16px;margin-bottom:5px}.cookie-copy p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+    .cookie-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.cookie-btn{border:1px solid rgba(0,20,64,.14);border-radius:999px;background:#fff;color:var(--ink);padding:10px 15px;font-size:12px;font-weight:800;cursor:pointer}.cookie-btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .cookie-modal{position:fixed;inset:0;z-index:1100;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,20,64,.48);backdrop-filter:blur(8px)}.cookie-modal.open{display:flex}.cookie-panel{width:min(620px,100%);max-height:min(760px,calc(100vh - 48px));overflow:auto;background:#fff;border-radius:26px;box-shadow:0 28px 100px rgba(0,20,64,.28);padding:28px}.cookie-head{display:flex;justify-content:space-between;gap:20px;align-items:start}.cookie-head h3{font-size:28px;letter-spacing:-.035em;margin:0 0 8px;color:var(--ink)}.cookie-head p{margin:0;color:var(--muted);font-size:14px}.cookie-close{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:20px;color:var(--ink)}
+    .cookie-option{display:grid;grid-template-columns:1fr auto;gap:22px;padding:20px 0;border-top:1px solid var(--line)}.cookie-option:first-of-type{margin-top:24px}.cookie-option strong{display:block;font-size:14px;color:var(--ink);margin-bottom:5px}.cookie-option p{margin:0;color:var(--muted);font-size:12.5px}.cookie-required{font-size:11px;font-weight:800;color:var(--ocean);text-transform:uppercase;letter-spacing:.08em;align-self:start;padding-top:2px}
+    .switch{position:relative;width:46px;height:28px;align-self:start}.switch input{position:absolute;opacity:0;pointer-events:none}.slider{position:absolute;inset:0;border-radius:999px;background:#D9DEE8;cursor:pointer;transition:.2s}.slider::after{content:"";position:absolute;width:22px;height:22px;left:3px;top:3px;border-radius:50%;background:#fff;box-shadow:0 2px 7px rgba(0,0,0,.18);transition:.2s}.switch input:checked+.slider{background:var(--ocean)}.switch input:checked+.slider::after{transform:translateX(18px)}
+    .cookie-modal-actions{display:flex;justify-content:flex-end;gap:9px;flex-wrap:wrap;padding-top:20px;border-top:1px solid var(--line);margin-top:4px}
+
+    @media (max-width:1100px){
+      :root{--container:min(100% - 48px, 980px)}
+      .hero{min-height:auto}.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:0;max-width:760px;width:100%;margin:12px auto 0}.hero h1{max-width:940px}
+      .services-grid{grid-template-columns:1fr 1fr}.impact-grid,.about-grid,.contact-shell{grid-template-columns:1fr;gap:46px}.impact-stat{border-left:0;border-top:1px solid rgba(255,255,255,.18);padding:38px 0 0}.about-sticky{position:relative;top:auto}.solution-shell{grid-template-columns:240px 1fr}.solution-panel.active{grid-template-columns:1fr}
+    }
+    @media (max-width:760px){
+      :root{--container:calc(100% - 32px);--radius:20px}
+      header{padding:13px 0}.nav-links{position:fixed;inset:72px 16px auto 16px;display:none;flex-direction:column;align-items:stretch;padding:20px;background:#fff;color:var(--ink)!important;border-radius:20px;box-shadow:var(--shadow)}.nav-links.open{display:flex}.nav-cta{text-align:center}.menu-btn{display:block}.menu-btn svg{display:block}
+      .hero{padding:130px 0 58px}.hero h1{font-size:clamp(48px,15vw,74px)}.hero p{font-size:17px}.hero-actions .btn{width:100%}.hero-visual{min-height:0;margin-top:22px}.hero-image{border-radius:22px}.hero-foot{grid-template-columns:1fr 1fr;margin-top:38px}.hero-proof{padding:18px 10px 4px 0}.cookie-banner{left:12px;right:12px;bottom:12px}.cookie-shell{grid-template-columns:1fr;padding:18px;border-radius:18px;gap:16px}.cookie-actions{justify-content:stretch}.cookie-actions .cookie-btn{flex:1}.cookie-panel{padding:22px;border-radius:22px}.cookie-modal-actions .cookie-btn{flex:1}
+      section{padding:78px 0}.services-head{display:block}.services-grid{grid-template-columns:1fr}.service{min-height:275px}.solution-shell{grid-template-columns:1fr}.solution-tabs{flex-direction:row;overflow:auto;padding-bottom:6px}.tab{white-space:nowrap}.solution-panel{padding:26px}.solution-panel.active{gap:24px}.checklist{grid-template-columns:1fr}.solution-art{min-height:0}.about-panel{min-height:340px;padding:28px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.contact{padding:72px 0}.contact-shell{gap:36px}.footer-grid{grid-template-columns:1fr;gap:30px}.copyright{flex-direction:column}.section-title{font-size:clamp(34px,11vw,50px)}
+    }
+    @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="KASCO Sourcing home">
+        <span class="brand-mark">K</span>
+        <span>KASCO <small>SOURCING</small></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#solutions">Solutions</a>
+        <a class="nav-cta" href="#contact">Contact us</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow hero-kicker">Global sourcing, built around clarity</div>
+          <h1>Source smarter.<br><span>Grow stronger.</span></h1>
+          <p>KASCO Sourcing helps businesses simplify supplier complexity, improve quality visibility and build resilient sourcing operations from product brief to delivery.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#contact">Talk to KASCO <span class="arrow">↗</span></a>
+            <a class="btn secondary" href="#services">Explore our capabilities <span class="arrow">↓</span></a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-image">
+            <img src="assets/images/hero-kasco-sourcing.webp" alt="KASCO Sourcing global logistics and supply chain network" loading="eager" decoding="async">
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="container hero-foot">
+        <div class="hero-proof"><strong>Supplier Discovery</strong>Identify the right fit for product, capacity and commercial goals.</div>
+        <div class="hero-proof"><strong>Quality Control</strong>Build checkpoints into production, not after the fact.</div>
+        <div class="hero-proof"><strong>Risk Visibility</strong>Spot sourcing and compliance risks earlier.</div>
+        <div class="hero-proof"><strong>Delivery Coordination</strong>Keep critical milestones visible and actionable.</div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="container">
+        <div class="services-head"><div><div class="eyebrow">What we do</div><h2 class="section-title">Sourcing expertise designed around your business.</h2></div><p class="section-copy">A modular service model lets KASCO support a single sourcing challenge or act as an integrated extension of your supply-chain team.</p></div>
+        <div class="services-grid">
+          <article class="service"><div><div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.25"/><path d="m16 16 4 4"/><path d="M8.5 11h5M11 8.5v5"/></svg></div><div class="service-num">01 / DISCOVER</div><h3>Supplier Search & Qualification</h3><p>Structure the search, benchmark supplier capability and narrow the field against your product and commercial criteria.</p></div><div class="service-bottom"><span>Find the right fit</span><span>↗</span></div></article>
+          <article class="service"><div><div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5 12 4l8 3.5v9L12 20l-8-3.5z"/><path d="M4 7.5 12 11l8-3.5M12 11v9"/><path d="m8.6 9.5 6.8-3"/></svg></div><div class="service-num">02 / CONTROL</div><h3>Quality & Production Management</h3><p>Embed visibility across samples, pre-production, in-line checks and issue resolution to protect quality and timelines.</p></div><div class="service-bottom"><span>Improve control</span><span>↗</span></div></article>
+          <article class="service"><div><div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19 6v5.3c0 4.4-2.8 7.4-7 9.2-4.2-1.8-7-4.8-7-9.2V6z"/><path d="m8.7 12 2.1 2.1 4.6-4.7"/></svg></div><div class="service-num">03 / PROTECT</div><h3>Compliance & Responsible Sourcing</h3><p>Build a more disciplined supplier base through documented requirements, audits, corrective actions and traceability.</p></div><div class="service-bottom"><span>Reduce exposure</span><span>↗</span></div></article>
+          <article class="service"><div><div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5h16"/><path d="M6.5 16V11M12 16V7.5M17.5 16V4.5"/><path d="m5.5 8.5 5-3 3.2 1.8 5-4"/></svg></div><div class="service-num">04 / OPTIMIZE</div><h3>Cost & Supply Chain Optimization</h3><p>Evaluate cost structures, workflows and supplier mix to improve performance without treating price as the only variable.</p></div><div class="service-bottom"><span>Create advantage</span><span>↗</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="impact">
+      <div class="container impact-grid">
+        <div><div class="eyebrow">Why KASCO</div><h2 class="section-title">Less sourcing noise. More decision clarity.</h2><p class="section-copy">Sourcing performance improves when information, accountability and action are connected. KASCO is designed to make that connection visible throughout the process.</p></div>
+        <div class="impact-stat"><div class="big">01</div><p>One operating view across supplier selection, quality, production risk and sourcing progress—so teams can act earlier and with more confidence.</p></div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="about-sticky"><div class="eyebrow">About KASCO</div><h2 class="section-title">A sourcing partner, not just a sourcing layer.</h2><div class="about-panel"><strong>Clarity<br>at every<br>critical step.</strong><p>KASCO is positioned to combine hands-on sourcing execution with practical supply-chain thinking, helping clients move from fragmented supplier activity toward a more controlled operating model.</p></div></div>
+        <div class="about-list">
+          <div class="about-item"><div class="top"><span class="dot"></span><h3>Transparency</h3></div><p>Make supplier, quality and production information easier to understand, verify and act on.</p></div>
+          <div class="about-item"><div class="top"><span class="dot"></span><h3>Responsibility</h3></div><p>Build better sourcing discipline around compliance, risk management and long-term supplier standards.</p></div>
+          <div class="about-item"><div class="top"><span class="dot"></span><h3>Efficiency</h3></div><p>Focus resources on the decisions, suppliers and interventions that have the greatest commercial impact.</p></div>
+          <div class="about-item"><div class="top"><span class="dot"></span><h3>Partnership</h3></div><p>Work as an extension of the client team, with aligned priorities and a practical implementation mindset.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="solutions" id="solutions">
+      <div class="container">
+        <div class="eyebrow">Find the right solution</div><h2 class="section-title">Different sourcing problems need different operating responses.</h2>
+        <div class="solution-shell">
+          <div class="solution-tabs" role="tablist">
+            <button class="tab active" data-tab="risk">Reduce sourcing risk</button>
+            <button class="tab" data-tab="scale">Scale supply capacity</button>
+            <button class="tab" data-tab="cost">Improve cost structure</button>
+          </div>
+          <div class="solution-panels">
+            <div class="solution-panel active" id="risk"><div><h3>Turn hidden supply risks into visible action points.</h3><p>Review supplier fit, quality controls, production dependencies and compliance requirements before they become expensive downstream problems.</p><div class="checklist"><div class="check">Supplier qualification</div><div class="check">Quality checkpoints</div><div class="check">Production risk review</div><div class="check">Corrective-action follow-up</div></div></div><div class="solution-art"><img src="assets/images/solution-risk.webp" alt="KASCO Sourcing risk and quality management" loading="lazy" decoding="async"></div></div>
+            <div class="solution-panel" id="scale"><div><h3>Expand supplier capacity without losing operating control.</h3><p>Build a broader, better-qualified supplier network while standardizing the information and process needed to keep quality and timelines aligned.</p><div class="checklist"><div class="check">Supplier network expansion</div><div class="check">Capacity benchmarking</div><div class="check">Workflow standardization</div><div class="check">Performance tracking</div></div></div><div class="solution-art"><img src="assets/images/solution-scale.webp" alt="KASCO Sourcing global supplier network and scalable supply capacity" loading="lazy" decoding="async"></div></div>
+            <div class="solution-panel" id="cost"><div><h3>Optimize total sourcing economics, not just unit price.</h3><p>Assess supplier pricing, process friction, quality leakage and sourcing structure to identify where better decisions can create sustainable savings.</p><div class="checklist"><div class="check">Cost breakdown review</div><div class="check">Supplier comparison</div><div class="check">Process efficiency</div><div class="check">Commercial negotiation support</div></div></div><div class="solution-art"><img src="assets/images/solution-cost.webp" alt="KASCO Sourcing cost optimization and sourcing analysis" loading="lazy" decoding="async"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-shell">
+        <div><div class="eyebrow">Start a conversation</div><h2 class="section-title">A better sourcing model starts with the right question.</h2><p class="section-copy">Tell us what you are sourcing, where the process is getting difficult and what outcome matters most. KASCO can help structure the next step.</p></div>
+        <form onsubmit="event.preventDefault(); document.getElementById('formStatus').textContent='Thank you — this prototype form is ready to connect to your preferred backend.';">
+          <div class="form-grid"><div class="field"><label for="name">Name</label><input id="name" name="name" required placeholder="Your name"></div><div class="field"><label for="company">Company</label><input id="company" name="company" placeholder="Company name"></div><div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required placeholder="name@company.com"></div><div class="field"><label for="phone">Phone</label><input id="phone" name="phone" placeholder="+84 ..."></div><div class="field full"><label for="message">What can we help you source?</label><textarea id="message" name="message" placeholder="Briefly describe your product, supply-chain challenge or sourcing objective."></textarea></div></div>
+          <button class="submit" type="submit">Send enquiry ↗</button><div id="formStatus" style="font-size:12px;color:var(--muted);margin-top:10px"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid"><div><div class="footer-brand">KASCO <span>Sourcing</span></div><p style="max-width:440px">Smarter sourcing systems for transparent, resilient and commercially effective supply chains.</p></div><div><h4>Explore</h4><div class="footer-links"><a href="#services">Services</a><a href="#about">About</a><a href="#solutions">Solutions</a></div></div><div><h4>Contact</h4><div class="footer-links"><a href="mailto:hello@kascosourcing.com">hello@kascosourcing.com</a><a href="#contact">Send an enquiry</a><a href="#">LinkedIn</a></div></div></div>
+      <div class="copyright"><span>© 2026 KASCO Sourcing. All rights reserved.</span><span><a href="#">Privacy</a> · <a href="#">Terms</a> · <button class="cookie-link" type="button" data-cookie-settings>Cookie settings</button></span></div>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Cookie consent">
+    <div class="cookie-shell">
+      <div class="cookie-copy"><strong>Your privacy choices</strong><p>We use necessary cookies to operate this website. With your permission, we may also use analytics and marketing cookies. You can accept, reject or manage optional cookies at any time.</p></div>
+      <div class="cookie-actions"><button class="cookie-btn" type="button" id="cookieReject">Reject optional</button><button class="cookie-btn" type="button" id="cookieManage">Manage</button><button class="cookie-btn primary" type="button" id="cookieAccept">Accept all</button></div>
+    </div>
+  </div>
+
+  <div class="cookie-modal" id="cookieModal" role="dialog" aria-modal="true" aria-labelledby="cookieTitle">
+    <div class="cookie-panel">
+      <div class="cookie-head"><div><h3 id="cookieTitle">Cookie preferences</h3><p>Choose which optional cookie categories KASCO Sourcing may use. Necessary cookies are always active because they are required for core website functions.</p></div><button class="cookie-close" type="button" id="cookieClose" aria-label="Close cookie preferences">×</button></div>
+      <div class="cookie-option"><div><strong>Necessary</strong><p>Required for essential site functions, security and remembering your consent choice.</p></div><span class="cookie-required">Always on</span></div>
+      <div class="cookie-option"><div><strong>Analytics</strong><p>Helps us understand aggregated website usage and improve performance. Analytics scripts should load only after consent.</p></div><label class="switch"><input type="checkbox" id="cookieAnalytics"><span class="slider"></span></label></div>
+      <div class="cookie-option"><div><strong>Marketing</strong><p>Allows advertising and conversion technologies to measure campaigns or personalize marketing. Marketing scripts should load only after consent.</p></div><label class="switch"><input type="checkbox" id="cookieMarketing"><span class="slider"></span></label></div>
+      <div class="cookie-modal-actions"><button class="cookie-btn" type="button" id="cookieModalReject">Reject optional</button><button class="cookie-btn primary" type="button" id="cookieSave">Save preferences</button></div>
+    </div>
+  </div>
+
+  <script>
+    const header=document.getElementById('header');
+    const menuBtn=document.getElementById('menuBtn');
+    const navLinks=document.getElementById('navLinks');
+    const syncHeader=()=>header.classList.toggle('scrolled',window.scrollY>24);
+    syncHeader(); window.addEventListener('scroll',syncHeader,{passive:true});
+    menuBtn.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuBtn.setAttribute('aria-expanded',open)});
+    navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}));
+    document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.solution-panel').forEach(x=>x.classList.remove('active'));
+      btn.classList.add('active'); document.getElementById(btn.dataset.tab).classList.add('active');
+    }));
+
+    // Consent manager: optional categories default OFF until the visitor gives consent.
+    const consentKey='kasco_cookie_consent_v1';
+    const cookieBanner=document.getElementById('cookieBanner');
+    const cookieModal=document.getElementById('cookieModal');
+    const analyticsToggle=document.getElementById('cookieAnalytics');
+    const marketingToggle=document.getElementById('cookieMarketing');
+    const readConsent=()=>{try{return JSON.parse(localStorage.getItem(consentKey))}catch(e){return null}};
+    const applyConsent=(choice)=>{
+      // Hook analytics / marketing tags here only when their category is true.
+      document.documentElement.dataset.analyticsConsent=choice.analytics?'granted':'denied';
+      document.documentElement.dataset.marketingConsent=choice.marketing?'granted':'denied';
+    };
+    const saveConsent=(analytics,marketing)=>{
+      const choice={necessary:true,analytics:!!analytics,marketing:!!marketing,updatedAt:new Date().toISOString()};
+      localStorage.setItem(consentKey,JSON.stringify(choice)); applyConsent(choice); cookieBanner.classList.remove('show'); cookieModal.classList.remove('open');
+    };
+    const openCookieSettings=()=>{const c=readConsent()||{analytics:false,marketing:false};analyticsToggle.checked=!!c.analytics;marketingToggle.checked=!!c.marketing;cookieModal.classList.add('open');};
+    const existingConsent=readConsent(); if(existingConsent){applyConsent(existingConsent)}else{cookieBanner.classList.add('show')}
+    document.getElementById('cookieAccept').addEventListener('click',()=>saveConsent(true,true));
+    document.getElementById('cookieReject').addEventListener('click',()=>saveConsent(false,false));
+    document.getElementById('cookieManage').addEventListener('click',openCookieSettings);
+    document.getElementById('cookieClose').addEventListener('click',()=>cookieModal.classList.remove('open'));
+    document.getElementById('cookieSave').addEventListener('click',()=>saveConsent(analyticsToggle.checked,marketingToggle.checked));
+    document.getElementById('cookieModalReject').addEventListener('click',()=>saveConsent(false,false));
+    document.querySelectorAll('[data-cookie-settings]').forEach(btn=>btn.addEventListener('click',openCookieSettings));
+    cookieModal.addEventListener('click',e=>{if(e.target===cookieModal)cookieModal.classList.remove('open')});
+  </script>
+</body>
+</html>
